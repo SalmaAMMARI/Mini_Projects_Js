@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz QCM</title>
+    <link rel="stylesheet" href="styles.css">
+   
+    <style>
+
+
+    </style>
+</head>
+
+<body>
+
+    <h1>Quiz QCM</h1>
+    <div id="score-container">
+        Score : <span id="score">0</span>
+    </div>
+    
+    <div id="quiz-container"></div>
+    <br>
+
+    <button id="submit-btn">Valider</button>
+    <p id="timer"></p>
+
+   
+</body>
+<script src="script.js" >
+  
+</script>
+</html>

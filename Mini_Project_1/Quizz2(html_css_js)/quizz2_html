@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="quiz2.css">
+    <title>Quiz Configurator</title>
+    <style>
+       
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>API Helper</h2>
+        <form id="quizForm">
+            <label for="numQuestions">Number of questions:</label>
+            <input type="number" id="numQuestions" min="1" value="5">
+
+            <label for="category">Select Category:</label>
+            <select id="category">
+                <option value="any" selected>Any Category</option>
+                <option value="9">General Culture</option>
+                <option value="11">Films</option>
+                <option value="15">Computer Science</option>
+                <option value="21">Sports</option>
+            </select>
+
+            <label for="difficulty">Select Difficulty:</label>
+            <select id="difficulty">
+                <option value="any">Any Difficulty</option>
+                <option value="easy">Easy</option>
+                <option value="medium">Medium</option>
+                <option value="hard">Hard</option>
+            </select>
+
+            <label for="type">Select Type:</label>
+            <select id="type">
+                <option value="any" selected>Any Type</option>
+                <option value="boolean">Boolean</option>
+                <option value="multiple">Multiple Choices</option>
+            </select>
+
+            <label for="encoding">Select Encoding:</label>
+            <select id="encoding">
+                <option value="default" selected>Default Encoding</option>
+                <option value="url">URL Encoding</option>
+                <option value="legacy">Legacy URL Encoding</option>
+                <option value="base64">Base 64 Encoding</option>
+            </select>
+
+            <button type="submit">Generate Quiz</button>
+        </form>
+
+        <div class="quiz-container" id="quizContainer">
+            <h2>Your Quiz</h2>
+            <p id="timer"></p> <!-- Timer here -->
+            <div id="quizQuestions"></div>
+            <button id="submitQuiz">Submit</button>
+        </div>
+
+        <div class="result-container" id="resultContainer">
+            <h2>Result</h2>
+            <p id="score"></p>
+        </div>
+    </div>
+
+    <script src="quizzP2.js">
+        
+    </script>
+</body>
+</html>
