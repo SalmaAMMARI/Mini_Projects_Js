@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8" />
+<title>Manipulation de vue</title>
+<script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+</head>
+<body>
+
+<div id="monapp">
+	<!-- Exercice 4 -->
+<p style="color:blue"><strong>Exercice4:</strong></p>
+<div id="ap">
+	<ul>
+		<li style="font-weight:bold;">Couleur de la police:
+			<ul type="none">
+				<li style="color:red;font-weight: bold;" >Rouge  <input type="radio" v-model="couleur" value="red" > </li>
+				<li style="color:blue;font-weight: bold;">Bleu  <input type="radio" v-model="couleur"  value="blue" >  </li>
+			</ul>
+		</li>
+		<li style="font-weight:bold;"  >
+			Afficher/cacher le paragraphe ? <input type="checkbox"  v-model="flag" >
+		</li>
+	</ul>
+	<p :style="{color:couleur}"  style="font-weight: bold;"   v-if="!flag" >Lorem ipsum dolor sit, amet consectetur adipisicing elit.<br>
+		 Ullam pariatur ‹ mollitia et, inventore delectus.<br>
+		 Doloribus laudantium maiores at necessiti ipsum distinctio?</p>
+
+</div>
+	
+</div>
+
+
+<script>
+	
+//_______________Exercice4______________
+const appli = {
+		data () {
+				return {
+					couleur:'black',
+					flag:false,
+				
+					
+				}
+			}, methods:{
+				
+			}
+	};
+	
+Vue.createApp(appli).mount("#monapp");
+</script>
+
+</body>
+</html>

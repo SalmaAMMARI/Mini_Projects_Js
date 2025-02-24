@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8" />
+<title>Manipulation de vue</title>
+<script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+
+<style>
+	 button {
+      background-color: #4CAF50;  /* Couleur de fond verte */
+      color: white;                /* Texte en blanc */
+      font-size: 16px;             /* Taille de la police */
+      padding: 10px 20px;          /* Espacement intérieur */
+      border: none;                /* Pas de bordure */
+      border-radius: 5px;          /* Coins arrondis */
+      cursor: pointer;            /* Curseur en forme de main */
+      transition: background-color 0.3s ease;  /* Transition douce pour le changement de couleur */
+    }
+
+    button:hover {
+      background-color: #45a049;  /* Changer la couleur au survol */
+    }
+	body{
+		text-align: left;
+		margin-left: 30%;
+	}
+</style>
+</head>
+<body>
+	<!-- Exercice 1 -->
+<p style="color:blue"><strong>Exercice1:</strong></p>
+<div id="monapp">
+	
+	<button @click="titre='cliqué!'">{{titre}}</button>
+	
+</div>
+<!-- Exercice 2 -->
+<p style="color:blue"><strong>Exercice2:</strong></p>
+<div id="app">
+	<button  @click="incrémenter">++</button>  {{counter}}  <button @click="décrémenter">--</button> 
+
+
+</div>
+
+
+<!-- Exercice 3 -->
+<p style="color:blue"><strong>Exercice3:</strong></p>
+<div id="api">
+	<label for="texto"><strong>Entrez du texte (sans espaces) :</strong></label>&nbsp;
+	<input type="text"  v-model="text"  @input="verifier">
+	<p v-if="flag"  style="font-weight: bold;font-size:1em;" >⚠️ Les espaces ne sont pas autorisés !</p>
+
+</div>
+
+
+
+<script >
+//__________________Exercice1______________
+	const appli = {
+		data () {
+				return {
+					titre:'cliquez moi!'
+					
+				}
+			}
+	};
+	
+Vue.createApp(appli).mount("#monapp");
+//_______________Exercice2______________
+
+const app = {
+		data () {
+				return {
+					counter:0
+					
+				}
+			}, methods:{
+				incrémenter(){
+					this.counter+=1;
+				}, décrémenter(){
+					this.counter-=1;
+				}
+			}
+	};
+	
+Vue.createApp(app).mount("#app");
+
+//_______________Exercice3______________
+const api = {
+		data () {
+				return {
+					flag:false,
+					text:'',
+					
+					
+				}
+			}, methods:{
+				verifier(){
+					if (this.text.includes(' ')){
+						this.flag=true
+
+					} else{
+						this.flag=false
+
+					}
+				}
+				
+			}
+	};
+	
+Vue.createApp(api).mount("#api");
+</script>
+
+</body>
+</html>

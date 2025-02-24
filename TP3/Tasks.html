@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Liste des Tâches</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .filters {
+            margin-bottom: 20px;
+        }
+
+        button {
+            padding: 10px 15px;
+            margin: 5px;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+            border-radius: 5px;
+            background: #ddd;
+            transition: background 0.3s;
+        }
+
+        .active {
+            background: #3498db;
+            color: white;
+            font-weight: bold;
+        }
+
+        .task-container {
+            max-width: 400px;
+            margin: 10px auto;
+            padding: 15px;
+            background: white;
+            border-left: 5px solid #3498db;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            text-align: left;
+        }
+
+        .task-title {
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        .task-description {
+            font-size: 14px;
+            color: #555;
+        }
+
+        .completed {
+            border-left-color: #2ecc71;
+            background-color: #e8f5e9;
+        }
+        
+        .small-button {
+            padding: 5px 10px;
+            font-size: 12px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .small-button:hover {
+            background-color: #45a049;
+        }
+        .total-tasks {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    margin-top: 20px;
+    font-size: 16px;
+    text-align: left;
+    width: 100%;
+    max-width: 450px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.task-summary {
+    display: flex;
+    align-items: center;
+    padding: 12px 0;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.task-summary:last-child {
+    border-bottom: none;
+}
+
+.task-label {
+    font-weight: bold;
+    color: #333;
+    flex-grow: 1;
+    font-size: 18px;
+}
+
+.task-count {
+    font-size: 20px;
+    font-weight: 600;
+    color: #3498db;
+}
+
+
+     
+    </style>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+</head>
+<body>
+
+    <div id="app">
+        <h2>Liste des Tâches</h2>
+
+        <!-- Boutons de filtre -->
+        <div class="filters">
+            <button @click="filter = 'all'" :class="{ active: filter === 'all' }">Toutes</button>
+            <button @click="filter = 'todo'" :class="{ active: filter === 'todo' }">À faire</button>
+            <button @click="filter = 'completed'" :class="{ active: filter === 'completed' }">Terminées</button>
+        </div>
+
+        <!-- Affichage des tâches filtrées -->
+        <div v-for="task in filteredTasks" :key="task.id" class="task-container" :class="{ completed: task.completed }">
+            <div class="task-title">{{ task.title }} - 
+                <span v-if="task.completed">✅ Terminée</span>
+                <span v-else>❌ À faire</span>  
+            </div>
+            <div class="task-description">{{ task.description }}</div>
+            <button v-show="!task.completed" @click="markAsCompleted(task)" class="small-button">Marquer comme terminée</button>
+        </div>
+
+        <!-- Affichage des comptages -->
+        <div class="total-tasks">
+            <div class="task-summary">
+                <span class="task-label">Total des tâches :</span>
+                <span class="task-count">{{ totalTasks }}</span>
+            </div>
+            <div class="task-summary">
+                <span class="task-label">Tâches terminées :</span>
+                <span class="task-count">{{ terminated }}</span>
+            </div>
+            <div class="task-summary">
+                <span class="task-label">Tâches non terminées :</span>
+                <span class="task-count">{{ nonTerminated }}</span>
+            </div>
+        </div>
+        
+    </div>
+
+    <script>
+        const app = Vue.createApp({
+            data() {
+                return {
+                    filter: 'all', // Valeurs possibles : 'all', 'todo', 'completed'
+                    
+                    tasks: [
+                        { id: 1, title: "Faire les courses", description: "Acheter des légumes et du lait.", completed: false },
+                        { id: 2, title: "Faire du sport", description: "Courir pendant 30 minutes.", completed: true },
+                        { id: 3, title: "Réviser pour l'examen", description: "Relire le chapitre 5 du manuel.", completed: false }
+                    ]
+                };
+            },
+            computed: {
+                filteredTasks() {
+                    if (this.filter === 'all') return this.tasks;
+                    if (this.filter === 'todo') return this.tasks.filter(task => !task.completed);
+                    if (this.filter === 'completed') return this.tasks.filter(task => task.completed);
+                },
+                totalTasks() {
+                    return this.tasks.length;
+                },
+                terminated() {
+                    return this.tasks.filter(task => task.completed).length;
+                },
+                nonTerminated() {
+                    return this.tasks.filter(task => !task.completed).length;
+                }
+            },
+            methods: {
+                markAsCompleted(task) {
+                    task.completed = true; // Marque la tâche comme terminée
+                }
+            }
+        });
+
+        app.mount("#app");
+    </script>
+
+</body>
+</html>
