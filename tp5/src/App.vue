@@ -3,26 +3,17 @@
     <!-- Barre de navigation -->
     <NavBar />
 
-    <!-- Contenu principal -->
-    <main role="main">
-      <router-view />
-    </main>
-
-    <!-- Pied de page (optionnel) -->
-    <footer>
-      <p>&copy; 2023 Mon Application Vue.js</p>
-    </footer>
+    <!-- Contenu dynamique -->
+    <router-view />
   </div>
 </template>
 
 <script>
-import NavBar from './components/NavBar.vue';
+import NavBar from './components/NavBar.vue'; // Importer le composant NavBar
 
 export default {
   name: 'App',
-  components: {
-    NavBar
-  }
+  components: { NavBar } // Enregistrer le composant NavBar
 };
 </script>
 
@@ -32,20 +23,12 @@ body {
   font-family: Arial, sans-serif;
   margin: 0;
   padding: 0;
-  line-height: 1.6;
+  background-color: #f9f9f9;
 }
 
-/* Styles pour le contenu principal */
-main {
+#app {
+  max-width: 1200px;
+  margin: 0 auto;
   padding: 20px;
-}
-
-/* Styles pour le pied de page */
-footer {
-  text-align: center;
-  padding: 10px;
-  background-color: #f8f9fa;
-  border-top: 1px solid #e9ecef;
-  margin-top: 20px;
 }
 </style>
