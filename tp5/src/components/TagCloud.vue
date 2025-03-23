@@ -1,6 +1,6 @@
 <template>
 <div class="Tags"  >
-<div v-for="tag in tags" :key="tag">
+<div v-for="tag in tagsview" :key="tag">
 <button  @click="goToTag(tag)">{{tag}}</button>
 </div>
 
@@ -8,9 +8,9 @@
 </template>
 <script>
 export default{
-    nom:"TagCloud",
+    name:"TagCloud",
     props:{
-        tags:Array
+        tagsview:Array
     },
     methods:{
         goToTag(tag){
