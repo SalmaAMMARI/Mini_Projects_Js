@@ -2,6 +2,7 @@
 <div>
 <h2>{{poost.titre}}</h2>
 <p>{{poost.article}}</p>
+<TagCloud :tags="poost.tags" > </TagCloud>
 
 
 
@@ -10,8 +11,13 @@
 
 <script>
 import data from "@/db.json"
+import TagCloud from "@/components/TagCloud.vue"
 export default{
     name:"PostDetail",
+    components:{
+        TagCloud
+
+    },
     data(){
         return{
             poost:{},
