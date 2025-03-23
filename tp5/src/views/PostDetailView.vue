@@ -21,7 +21,7 @@ export default{
     data(){
         return{
             poost:{},
-            test : 15
+            
         }
     },
     created(){

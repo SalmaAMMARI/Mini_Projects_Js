@@ -1,6 +1,7 @@
 <template>
 <div class="Tags"  >
 <div v-for="tag in tagsview" :key="tag">
+
 <button  @click="goToTag(tag)">{{tag}}</button>
 </div>
 
@@ -14,7 +15,7 @@ export default{
     },
     methods:{
         goToTag(tag){
-            this.$router.push('/tags/'+ tag)
+            this.$router.push('/TagsView/'+ tag)
         }
     }
 }
