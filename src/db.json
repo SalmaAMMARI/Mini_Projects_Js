@@ -1,0 +1,16 @@
+[
+    {
+      "id": 1,
+      "titre": "Développeur Frontend",
+      "description": "Description du poste de développeur frontend...",
+      "salaire": "50k€",
+      "creation":"12/12/2020"
+    },
+    {
+      "id": 2,
+      "titre": "Développeur Backend",
+      "description": "Description du poste de développeur backend...",
+      "salaire": "55k€",
+        "creation":"12/1/2023"
+    }
+  ]
