@@ -1,8 +1,8 @@
 <template>
 <div>
-<input type="name" id="nom" placeholder="title" v-model="newPost.titre">
-<textarea placeholder="article" v-model="newPost.article"></textarea>
-<button type="submit" @click="create">Create</button>
+<input type="name" id="nom" placeholder="title" v-model="newPost.titre"><br>
+<textarea placeholder="article" v-model="newPost.article"></textarea><br>
+<button type="submit" @click="create">Create</button><br>
 </div>
 </template>
 

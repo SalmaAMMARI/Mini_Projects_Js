@@ -16,7 +16,6 @@ export default {
     methods:{
         gotTodetails(){
             this.$router.push("/post/"+this.post.id)
-
         }
     }
 }
