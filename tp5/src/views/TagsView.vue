@@ -1,9 +1,15 @@
 <template>
   <div>
-    <p>{{ koko }}</p>
-    <h2>{{ poost.titre }}</h2>
-    <p>{{ poost.article }}</p>
-    <TagCloud :tagsview="poost.tags" />
+    <div v-if="poosts.length > 0">
+      <div v-for="post in poosts" :key="post.id">
+        <h2>{{ post.titre }}</h2>
+        <p>{{ post.article }}</p>
+        <TagCloud :tagsview="post.tags" />
+      </div>
+    </div>
+    <div v-else>
+      <p>Aucun post trouvé pour ce tag.</p>
+    </div>
   </div>
 </template>
 
@@ -18,16 +24,21 @@ export default {
   },
   data() {
     return {
-      poost: {},
+      poosts: [],
       koko: 0
     }
   },
   created() {
+    const selectedTag = this.$route.params.tag.toLowerCase(); // Normalize the tag
+    console.log("Selected tag:", selectedTag); // Debug
+
     for (let post of data) {
-      if (post.tags.includes((this.$route.params.tag)).toString()) {
-        this.poost = post;
-        this.koko = 10;
-        break;
+      const normalizedTags = post.tags.map(tag => tag.toLowerCase()); // Normalize tags
+      console.log("Post tags:", normalizedTags); // Debug
+
+      if (normalizedTags.includes(selectedTag)) {
+        this.poosts.push(post);
+        console.log("Matching post found:", post); // Debug
       }
     }
   }
