@@ -29,16 +29,28 @@ export default {
     }
   },
   created() {
-    const selectedTag = this.$route.params.tag.toLowerCase(); // Normalize the tag
-    console.log("Selected tag:", selectedTag); // Debug
+    this.filterPostsByTag(this.$route.params.tag);
+  },
+  watch: {
+    '$route.params.tag': function(newTag) {
+      this.filterPostsByTag(newTag);
+    }
+  },
+  methods: {
+    filterPostsByTag(tag) {
+      const selectedTag = tag.toLowerCase(); // Normalize the tag
+      console.log("Selected tag:", selectedTag); // Debug
 
-    for (let post of data) {
-      const normalizedTags = post.tags.map(tag => tag.toLowerCase()); // Normalize tags
-      console.log("Post tags:", normalizedTags); // Debug
+      this.poosts = []; // Clear the current posts
 
-      if (normalizedTags.includes(selectedTag)) {
-        this.poosts.push(post);
-        console.log("Matching post found:", post); // Debug
+      for (let post of data) {
+        const normalizedTags = post.tags.map(tag => tag.toLowerCase()); // Normalize tags
+        console.log("Post tags:", normalizedTags); // Debug
+
+        if (normalizedTags.includes(selectedTag)) {
+          this.poosts.push(post);
+          console.log("Matching post found:", post); // Debug
+        }
       }
     }
   }
