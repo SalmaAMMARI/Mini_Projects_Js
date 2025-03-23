@@ -1,8 +1,9 @@
 <template>
+<div>
 <input type="name" id="nom" placeholder="title" v-model="newPost.titre">
-<textarea ></textarea>
-
-
+<textarea placeholder="article" v-model="newPost.article"></textarea>
+<button type="submit" @click="create">Create</button>
+</div>
 </template>
 
 <script>
@@ -22,7 +23,14 @@ export default{
         }
     },
     mounted(){
-        this.json_post=Data,
+        this.json_post=Data
+    },
+    methods:{
+        create(){
+            this.json_post.push(this.newPost);
+            this.$router.push("/");
+            this.newPost.id= (this.json_post.length )?this.json_post[this.json_post.length-1].id +1 :0;
+        }
     }
 }
 
